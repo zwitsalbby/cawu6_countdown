@@ -1,14 +1,17 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+}
+
+.main-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     height: 100vh;
+    padding-top: 20px;
     overflow: hidden;
 }
 
@@ -17,14 +20,26 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+    margin: 10px;
+}
+
+.countdown-container {
+    position: sticky;
+    top: 20px;
+    width: 300px;
+    height: fit-content;
     animation: fadeIn 2s;
 }
 
-h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    animation: slideIn 1s ease-out;
+.schedule-container {
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    width: 300px;
+    animation: fadeIn 2s;
+}
+
+h1, h2 {
+    margin: 0 0 20px 0;
 }
 
 #countdown {
@@ -36,11 +51,6 @@ h1 {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
-}
-
-@keyframes slideIn {
-    from { transform: translateY(-50px); }
-    to { transform: translateY(0); }
 }
 
 @keyframes pulse {
@@ -80,26 +90,11 @@ h1 {
     100% { transform: translateY(0) rotate(360deg); }
 }
 
-.schedule-container {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-    width: 90%;
-    max-width: 500px;
-    animation: fadeIn 2s;
-}
-
-.schedule-container h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-
 .schedule-container ul {
     list-style: none;
     padding: 0;
     text-align: left;
+    margin: 0;
 }
 
 .schedule-container ul li {
