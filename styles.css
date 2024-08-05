@@ -5,6 +5,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -77,4 +78,34 @@ h1 {
     0% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-20px) rotate(180deg); }
     100% { transform: translateY(0) rotate(360deg); }
+}
+
+.schedule-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    width: 90%;
+    max-width: 500px;
+    animation: fadeIn 2s;
+}
+
+.schedule-container h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.schedule-container ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.schedule-container ul li {
+    background: #f9f9f9;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
