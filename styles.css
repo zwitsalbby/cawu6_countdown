@@ -21,6 +21,11 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .countdown-container {
@@ -78,11 +83,11 @@ h1, h2 {
     opacity: 0.8;
 }
 
-.star:nth-child(1) { top: 10%; left: 15%; animation-duration: 8s; }
+.star:nth-child(1) { top: 10%; left: 15%; animation-duration: 3s; }
 .star:nth-child(2) { top: 40%; left: 50%; animation-duration: 4s; }
 .star:nth-child(3) { top: 70%; left: 25%; animation-duration: 6s; }
 .star:nth-child(4) { top: 20%; left: 80%; animation-duration: 5s; }
-.star:nth-child(5) { top: 60%; left: 70%; animation-duration: 10s; }
+.star:nth-child(5) { top: 60%; left: 70%; animation-duration: 7s; }
 
 @keyframes float {
     0% { transform: translateY(0) rotate(0deg); }
