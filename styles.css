@@ -112,6 +112,9 @@ h1, h2 {
     background-color: #eeeeee;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .schedule-container .month ul {
@@ -130,4 +133,14 @@ h1, h2 {
 
 .hidden {
     display: none;
+}
+
+.dropdown-btn {
+    background: none;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
 }
