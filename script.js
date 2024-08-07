@@ -61,6 +61,7 @@ function addItem() {
             var li = document.createElement('li');
             var input = document.createElement('input');
             input.type = 'checkbox';
+            input.id = newItem.trim().toLowerCase().replace(/\s+/g, '-');
             input.onchange = function() {
                 updateCheckbox(input);
             };
@@ -68,6 +69,7 @@ function addItem() {
             li.appendChild(document.createTextNode(" " + newItem));
             ul.appendChild(li);
             document.getElementById('new-item').value = "";
+            updateCheckbox(input); // Save the new checkbox state
         } else {
             alert("Maximum of 3 additional items allowed.");
         }
