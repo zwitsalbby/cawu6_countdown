@@ -18,6 +18,16 @@
                 <div class="star"></div>
                 <div class="star"></div>
             </div>
+            <div class="extra-feature">
+                <h3>TO DO LIST</h3>
+                <ul id="todo-list">
+                    <li><input type="checkbox" id="gym" onchange="updateCheckbox(this)"> Gym</li>
+                    <li><input type="checkbox" id="solay" onchange="updateCheckbox(this)"> Belajar SOLAY</li>
+                    <li><input type="checkbox" id="pembukuan" onchange="updateCheckbox(this)"> Pembukuan</li>
+                </ul>
+                <input type="text" id="new-item" placeholder="Tambah aktivitas baru...">
+                <button onclick="addItem()">Tambah</button>
+            </div>
         </div>
         <div class="container schedule-container">
             <h2>List Ujian</h2>
