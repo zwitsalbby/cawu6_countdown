@@ -1,36 +1,133 @@
-// Set the date we're counting down to
-var countDownDate = new Date("Oct 25, 2024 00:00:00").getTime();
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+}
 
-// Update the countdown every 1 second
-var countdownFunction = setInterval(function() {
-    // Get today's date and time
-    var now = new Date().getTime();
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
+.container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
 
-    // Time calculations for days, hours, minutes, and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+.countdown-container {
+    position: sticky;
+    top: 20px;
+    width: 300px;
+    height: fit-content;
+    animation: fadeIn 2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    // Display the result in the element with id="countdown"
-    document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s ";
+.schedule-container {
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    width: 300px;
+    animation: fadeIn 2s;
+    text-align: left;
+}
 
-    // If the countdown is finished, display some text
-    if (distance < 0) {
-        clearInterval(countdownFunction);
-        document.getElementById("countdown").innerHTML = "EXPIRED";
-    }
-}, 1000);
+h1, h2 {
+    margin: 0 0 20px 0;
+}
 
-function toggleVisibility(id) {
-    var element = document.getElementById(id);
-    if (element.classList.contains('hidden')) {
-        element.classList.remove('hidden');
-    } else {
-        element.classList.add('hidden');
-    }
+#countdown {
+    font-size: 1.5em;
+    color: #333333;
+    animation: pulse 1s infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ffcc00;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: float 5s linear infinite;
+    opacity: 0.8;
+}
+
+.star:nth-child(1) { top: 10%; left: 15%; animation-duration: 3s; }
+.star:nth-child(2) { top: 40%; left: 50%; animation-duration: 4s; }
+.star:nth-child(3) { top: 70%; left: 25%; animation-duration: 6s; }
+.star:nth-child(4) { top: 20%; left: 80%; animation-duration: 5s; }
+.star:nth-child(5) { top: 60%; left: 70%; animation-duration: 7s; }
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+    100% { transform: translateY(0) rotate(360deg); }
+}
+
+.schedule-container .month {
+    margin-bottom: 20px;
+}
+
+.schedule-container .month h3 {
+    margin: 0;
+    padding: 10px;
+    background-color: #eeeeee;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.schedule-container .month ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.schedule-container .month ul li {
+    background: #f9f9f9;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none;
 }
