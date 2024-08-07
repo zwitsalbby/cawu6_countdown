@@ -41,6 +41,7 @@ body {
     overflow-y: auto;
     width: 300px;
     animation: fadeIn 2s;
+    text-align: left;
 }
 
 h1, h2 {
@@ -95,14 +96,24 @@ h1, h2 {
     100% { transform: translateY(0) rotate(360deg); }
 }
 
-.schedule-container ul {
+.schedule-container .month {
+    margin-bottom: 20px;
+}
+
+.schedule-container .month h3 {
+    margin: 0;
+    padding: 10px;
+    background-color: #eeeeee;
+    border-radius: 5px;
+}
+
+.schedule-container .month ul {
     list-style: none;
     padding: 0;
-    text-align: left;
     margin: 0;
 }
 
-.schedule-container ul li {
+.schedule-container .month ul li {
     background: #f9f9f9;
     margin: 5px 0;
     padding: 10px;
