@@ -16,16 +16,16 @@ var countdownFunction = setInterval(function() {
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     // Display the result in the element with id="countdown"
-    document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s ";
+    document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-    // If the countdown is finished, display some text
+    // If the countdown is finished, write some text
     if (distance < 0) {
         clearInterval(countdownFunction);
         document.getElementById("countdown").innerHTML = "EXPIRED";
     }
 }, 1000);
 
+// Toggle visibility of the schedule lists
 function toggleVisibility(id) {
     var element = document.getElementById(id);
     if (element.classList.contains('hidden')) {
