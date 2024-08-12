@@ -71,12 +71,47 @@ function addItem() {
             document.getElementById('new-item').value = "";
             updateCheckbox(input); // Save the new checkbox state
         } else {
-            alert("Maximum of 3 additional items allowed.");
+            alert("Maksimal 3 aktivitas baru!");
         }
     }
 }
 
-// Load the checkbox state on page load
+// Function to display greeting based on time
+function displayGreeting() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var greeting = "";
+
+    if (hours >= 5 && hours < 11) {
+        greeting = "Selamat Pagi!";
+    } else if (hours >= 11 && hours <= 15 && minutes <= 30) {
+        greeting = "Selamat Siang!";
+    } else if (hours >= 15 && (hours < 18 || (hours == 15 && minutes > 30))) {
+        greeting = "Selamat Sore!";
+    } else if (hours >= 19 && (hours <= 21 && minutes <= 30)) {
+        greeting = "Selamat Malam!";
+    } else {
+        greeting = "Eh tidur lah!!!!!!!";
+    }
+
+    // Display greeting
+    document.getElementById("greeting").innerText = greeting;
+
+    // Display Jakarta time
+    document.getElementById("time").innerText = now.toLocaleTimeString('id-ID', {
+        timeZone: 'Asia/Jakarta',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
+}
+
+// Call the displayGreeting function on page load
 window.onload = function() {
-    loadCheckboxState();
+    displayGreeting();
+    loadCheckboxState(); // load the checkbox state
 };
+
+// Optionally, update the greeting every minute if needed
+setInterval(displayGreeting, 60000);
