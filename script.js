@@ -44,32 +44,32 @@ function updateCheckbox(element) {
 function loadCheckboxState() {
     var checkboxes = document.querySelectorAll('#todo-list input[type="checkbox"]');
     checkboxes.forEach(function(checkbox) {
-        var checked = localStorage.getItem(checkbox.id);
-        if (checked !== null) {
-            checkbox.checked = (checked === 'true');
-        }
+        var checked = localStorage.getItem(checkbox.id) === 'true';
+        checkbox.checked = checked;
     });
 }
 
-// Add new item to the to-do list
+// Add a new item to the to-do list
 function addItem() {
-    var newItem = document.getElementById('new-item').value;
-    if (newItem.trim() !== "") {
-        var ul = document.getElementById('todo-list');
-        var listItems = ul.getElementsByTagName('li');
-        if (listItems.length < 6) {
-            var li = document.createElement('li');
-            var input = document.createElement('input');
-            input.type = 'checkbox';
-            input.id = newItem.trim().toLowerCase().replace(/\s+/g, '-');
-            input.onchange = function() {
-                updateCheckbox(input);
-            };
-            li.appendChild(input);
+    var input = document.getElementById("new-item");
+    var newItem = input.value.trim();
+
+    if (newItem !== "") {
+        var list = document.getElementById("todo-list");
+        var newItems = list.querySelectorAll('li.new-item');
+
+        if (newItems.length < 3) {
+            var li = document.createElement("li");
+            li.classList.add("new-item");
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.id = "new-" + newItems.length;
+            checkbox.onchange = function() { updateCheckbox(checkbox); };
+            li.appendChild(checkbox);
             li.appendChild(document.createTextNode(" " + newItem));
-            ul.appendChild(li);
-            document.getElementById('new-item').value = "";
-            updateCheckbox(input); // Save the new checkbox state
+            list.appendChild(li);
+            input.value = "";
+            updateCheckbox(checkbox); // Save the new checkbox state
         } else {
             alert("Maksimal 3 aktivitas baru!");
         }
