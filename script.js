@@ -118,6 +118,14 @@ function addTodoItem() {
     }
 }
 
+// Dropdown functionality
+document.querySelectorAll('.dropdown-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        var dropdownContent = this.nextElementSibling;
+        dropdownContent.classList.toggle('active');
+    });
+});
+
 // Load the weather, greeting, and checkbox state on page load
 window.onload = function() {
     fetchWeather();
