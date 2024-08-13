@@ -8,31 +8,76 @@
 </head>
 <body>
     <div class="container">
-        <h1>CAWU 6</h1>
-        <p id="countdown"></p>
-        
-        <!-- Weather Widget -->
-        <div class="weather-widget">
-            <p id="weather">Loading weather...</p>
+        <!-- Countdown Box -->
+        <div class="box" id="countdown-box">
+            <h1 id="title">CAWU 6</h1>
+            <p id="countdown"></p>
+            <div id="greeting"></div>
+            <div id="weather"></div>
+            <!-- To-Do List Section -->
+            <div id="todo-section">
+                <h2>TO DO LIST:</h2>
+                <ul id="todo-list">
+                    <li class="todo-item"><input type="checkbox"> <span>Gym</span></li>
+                    <li class="todo-item"><input type="checkbox"> <span>Pembukuan</span></li>
+                </ul>
+                <input type="text" id="todo-input" placeholder="Tambahkan aktivitas...">
+                <button id="add-todo">Add</button>
+            </div>
         </div>
 
-        <!-- Dark/Light Mode Toggle -->
-        <div class="toggle-container">
-            <label class="switch">
-                <input type="checkbox" id="theme-toggle">
-                <span class="slider round"></span>
-            </label>
-            <span id="mode-label">Light Mode</span>
-        </div>
-
-        <div class="decorations">
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
+        <!-- Schedule List Box -->
+        <div class="box" id="schedule-box">
+            <h2>List Ujian</h2>
+            <div class="month">
+                <button class="dropdown-btn">Agustus</button>
+                <div class="dropdown-content">
+                    <ul>
+                        <li>27 Agustus - Perilaku Keorganisasian - UTC</li>
+                        <li>28 Agustus - Operasional Perbankan - Ujian 3</li>
+                        <li>30 Agustus - Wealth Management - Quiz 1</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="month">
+                <button class="dropdown-btn">September</button>
+                <div class="dropdown-content">
+                    <ul>
+                        <li>2 September - Risk Management - Mid Term Exam</li>
+                        <li>2 September - Financial Modelling - Mid Test</li>
+                        <li>6 September - Wealth Management - UTC</li>
+                        <li>11 September - Operasional Perbankan - Ujian 4</li>
+                        <li>20 September - Bahasa Inggris 2 - Post test TOEFL</li>
+                        <li>24 September - Accounting Theory - Ujian 2</li>
+                        <li>26 September - Operasional Perbankan - Ujian 5</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="month">
+                <button class="dropdown-btn">Oktober</button>
+                <div class="dropdown-content">
+                    <ul>
+                        <li>3 Oktober - Operasional Perbankan - Ujian 6</li>
+                        <li>11 Oktober - Bahasa Inggris 2 - Presentasi TED talk</li>
+                        <li>15 Oktober - Perilaku Keorganisasian - UAC</li>
+                        <li>16 Oktober - Wealth Management - Movie Criticize Assignment</li>
+                        <li>18 Oktober - Bahasa Inggris 2 - Presentasi TED talk</li>
+                        <li>18 Oktober - Wealth Management - UAC</li>
+                        <li>21 Oktober - Risk Management - Final Exams</li>
+                        <li>21 Oktober - Financial Modelling - Final Test</li>
+                        <li>22 Oktober - Accounting Theory - Ujian 3</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Dark/Light Mode Toggle -->
+    <label class="switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider round"></span>
+    </label>
+    <label id="mode-label">Light Mode</label>
 
     <script src="script.js"></script>
 </body>
