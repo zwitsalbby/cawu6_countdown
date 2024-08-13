@@ -1,29 +1,127 @@
-/* Weather Widget */
-.weather-widget {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 10px;
-    margin-top: 20px;
-    font-size: 1.2em;
-    color: white;
+body {
+    font-family: Arial, sans-serif;
     text-align: center;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
 }
 
-/* Dark/Light Mode Toggle */
-.toggle-container {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+.container {
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+}
+
+.box {
+    background: #333333;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 10px;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+#countdown-box {
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+#title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#countdown {
+    font-size: 1.5em;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+#weather {
+    margin-top: 10px;
+    font-size: 1em;
+    color: #ffffff;
+}
+
+#todo-section {
+    margin-top: 20px;
+}
+
+#todo-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todo-item {
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+#todo-input {
+    padding: 5px;
+    width: 80%;
+    margin-top: 10px;
+}
+
+#add-todo {
+    padding: 5px;
+    background-color: #444444;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.month {
+    margin-top: 10px;
+}
+
+.dropdown-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #444444;
+    color: white;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-btn:focus {
+    outline: none;
+}
+
+.dropdown-content {
+    display: none;
+    padding: 10px;
+    background-color: #555555;
+    border-radius: 5px;
+}
+
+.month.active .dropdown-content {
+    display: block;
 }
 
 .switch {
-    position: relative;
-    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 50px;
     width: 34px;
     height: 20px;
-    margin-right: 10px;
+    background-color: #ccc;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .switch input {
@@ -34,11 +132,10 @@
 
 .slider {
     position: absolute;
-    cursor: pointer;
     top: 0;
     left: 0;
-    right: 0;
     bottom: 0;
+    right: 0;
     background-color: #ccc;
     transition: .4s;
     border-radius: 34px;
@@ -47,13 +144,13 @@
 .slider:before {
     position: absolute;
     content: "";
-    height: 14px;
-    width: 14px;
-    left: 3px;
-    bottom: 3px;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
     background-color: white;
     transition: .4s;
-    border-radius: 50%;
+    left: 2px;
+    bottom: 2px;
 }
 
 input:checked + .slider {
@@ -64,26 +161,23 @@ input:checked + .slider:before {
     transform: translateX(14px);
 }
 
-/* Dark mode styles */
-body.dark-mode {
-    background-color: #333;
-    color: white;
+#mode-label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #333333;
+    font-size: 14px;
 }
 
-body.dark-mode .container {
-    background-color: #444;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+.dark-mode {
+    background-color: #333333;
+    color: #ffffff;
 }
 
-body.dark-mode .weather-widget {
-    background: rgba(255, 255, 255, 0.2);
+.dark-mode .box {
+    background-color: #444444;
 }
 
-body.dark-mode #countdown {
-    color: white;
-}
-
-/* Adjust the star animation colors in dark mode */
-body.dark-mode .star {
-    background-color: #ffcc00;
+.dark-mode #weather, .dark-mode #todo-list, .dark-mode #greeting {
+    color: #ffffff;
 }
