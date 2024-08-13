@@ -1,127 +1,136 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    transition: background-color 0.3s ease;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    position: relative;
+    justify-content: space-around;
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 20px;
 }
 
 .box {
-    background: #333333;
-    color: #ffffff;
+    background: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    margin: 10px;
-    overflow-y: auto;
-    max-height: 80vh;
+    width: 30%;
+    position: relative;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-#countdown-box {
-    position: sticky;
-    top: 0;
-    left: 0;
+h1, h3 {
+    text-align: center;
 }
 
-#title {
-    font-size: 2em;
-    margin-bottom: 20px;
+#left-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #countdown {
     font-size: 1.5em;
-    color: #ffffff;
     margin-bottom: 20px;
 }
 
-#weather {
-    margin-top: 10px;
-    font-size: 1em;
-    color: #ffffff;
-}
-
-#todo-section {
-    margin-top: 20px;
+#todo-list-container {
+    width: 100%;
 }
 
 #todo-list {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
 }
 
-.todo-item {
+#todo-list .todo-item {
+    display: flex;
+    align-items: center;
     margin-bottom: 10px;
-    font-size: 1em;
 }
 
-#todo-input {
+#todo-list input[type="text"] {
+    width: calc(100% - 20px);
     padding: 5px;
-    width: 80%;
-    margin-top: 10px;
 }
 
 #add-todo {
-    padding: 5px;
-    background-color: #444444;
-    color: white;
-    border: none;
+    margin-top: 10px;
+    padding: 5px 10px;
     cursor: pointer;
-    margin-left: 5px;
 }
 
-.month {
-    margin-top: 10px;
+#middle-box {
+    text-align: center;
+}
+
+#right-box {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.dropdown-container {
+    width: 100%;
 }
 
 .dropdown-btn {
     width: 100%;
     padding: 10px;
-    background-color: #444444;
-    color: white;
     text-align: left;
+    background-color: #333;
+    color: white;
     border: none;
-    cursor: pointer;
-}
-
-.dropdown-btn:focus {
     outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .dropdown-content {
     display: none;
-    padding: 10px;
-    background-color: #555555;
-    border-radius: 5px;
+    background-color: #f9f9f9;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
 }
 
-.month.active .dropdown-content {
+.dropdown-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-content ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-btn.active + .dropdown-content {
     display: block;
 }
 
-.switch {
+#theme-toggle-container {
     position: absolute;
     top: 10px;
-    right: 50px;
-    width: 34px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
     height: 20px;
-    background-color: #ccc;
-    border-radius: 10px;
-    cursor: pointer;
 }
 
 .switch input {
@@ -132,25 +141,24 @@ body {
 
 .slider {
     position: absolute;
+    cursor: pointer;
     top: 0;
     left: 0;
-    bottom: 0;
     right: 0;
+    bottom: 0;
     background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
+    transition: 0.4s;
 }
 
 .slider:before {
     position: absolute;
     content: "";
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
     background-color: white;
-    transition: .4s;
-    left: 2px;
-    bottom: 2px;
+    transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -158,26 +166,32 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-    transform: translateX(14px);
+    transform: translateX(20px);
 }
 
-#mode-label {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #333333;
-    font-size: 14px;
+.slider.round {
+    border-radius: 20px;
 }
 
-.dark-mode {
-    background-color: #333333;
-    color: #ffffff;
+.slider.round:before {
+    border-radius: 50%;
 }
 
-.dark-mode .box {
-    background-color: #444444;
+/* Dark mode */
+body.dark-mode {
+    background-color: #333;
+    color: #f0f0f0;
 }
 
-.dark-mode #weather, .dark-mode #todo-list, .dark-mode #greeting {
-    color: #ffffff;
+body.dark-mode .box {
+    background-color: #444;
+    color: #f0f0f0;
+}
+
+body.dark-mode .dropdown-btn {
+    background-color: #555;
+}
+
+body.dark-mode .dropdown-content ul li {
+    background-color: #555;
 }
