@@ -1,68 +1,25 @@
-// Set the date we're counting down to
+// Countdown logic
 var countDownDate = new Date("Oct 25, 2024 00:00:00").getTime();
-
-// Update the countdown every 1 second
 var countdownFunction = setInterval(function() {
     var now = new Date().getTime();
     var distance = countDownDate - now;
-
     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s ";
-
+    document.getElementById("countdown").innerText = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
     if (distance < 0) {
         clearInterval(countdownFunction);
-        document.getElementById("countdown").innerHTML = "EXPIRED";
+        document.getElementById("countdown").innerText = "EXPIRED";
     }
 }, 1000);
 
-// Function to fetch and display weather
-function fetchWeather() {
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=-6.2088&longitude=106.8456&current_weather=true')
-    .then(response => response.json())
-    .then(data => {
-        const weather = data.current_weather;
-        const temperature = weather.temperature;
-        const description = getDescription(weather.weathercode);
-        document.getElementById('weather').innerText = `Jakarta: ${temperature}°C, ${description}`;
-    });
-}
-
-// Function to get description from weather code (simplified example)
-function getDescription(code) {
-    switch(code) {
-        case 0: return "Clear Sky";
-        case 1: return "Mainly Clear";
-        case 2: return "Partly Cloudy";
-        case 3: return "Overcast";
-        default: return "Unknown";
-    }
-}
-
-// Function to toggle dark/light mode
-function toggleTheme() {
-    var body = document.body;
-    body.classList.toggle("dark-mode");
-
-    var themeLabel = document.getElementById("mode-label");
-    if (body.classList.contains("dark-mode")) {
-        themeLabel.innerText = "Dark Mode";
-    } else {
-        themeLabel.innerText = "Light Mode";
-    }
-}
-
-// Function to display greeting based on time of day
-function displayGreeting() {
-    var now = new Date();
-    var hours = now.getHours();
-    var greeting = "";
-    var timezone = "Jakarta (GMT+7)";
-    var timeText = now.getHours() + ":" + now.getMinutes().toString().padStart(2, '0');
+// Greetings logic
+function updateGreeting() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    let greeting;
 
     if (hours >= 5 && hours <= 10) {
         greeting = "Selamat Pagi!";
@@ -76,61 +33,89 @@ function displayGreeting() {
         greeting = "Eh tidur lah!!!!!!!";
     }
 
-    document.getElementById("greeting").innerText = `${greeting} (${timeText} - ${timezone})`;
+    document.getElementById("greeting").innerText = greeting;
+    document.getElementById("time").innerText = `${hours}:${minutes} WIB`;
 }
 
-// Function to load and save checkbox state
-function loadCheckboxState() {
-    document.querySelectorAll('.todo-item input').forEach(function(checkbox, index) {
-        var checked = localStorage.getItem('todo-checkbox-' + index);
-        if (checked === 'true') {
-            checkbox.checked = true;
-        }
-        checkbox.addEventListener('change', function() {
-            localStorage.setItem('todo-checkbox-' + index, checkbox.checked);
-        });
-    });
+setInterval(updateGreeting, 1000);
+updateGreeting();
+
+// Theme toggle
+const toggleSwitch = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme') || 'light';
+
+if (currentTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    toggleSwitch.checked = true;
 }
 
-// Function to add new to-do items
-function addTodoItem() {
-    var todoInput = document.getElementById("todo-input");
-    var todoList = document.getElementById("todo-list");
-
-    if (todoInput.value.trim() !== "" && todoList.children.length < 3) {
-        var newItem = document.createElement("li");
-        newItem.classList.add("todo-item");
-        newItem.innerHTML = `
-            <input type="checkbox">
-            <span>${todoInput.value}</span>
-        `;
-        todoList.appendChild(newItem);
-
-        // Save to localStorage
-        localStorage.setItem('todo-checkbox-' + (todoList.children.length - 1), false);
-
-        // Add event listener to the new checkbox
-        newItem.querySelector("input").addEventListener('change', function() {
-            localStorage.setItem('todo-checkbox-' + (todoList.children.length - 1), this.checked);
-        });
-
-        todoInput.value = "";
+toggleSwitch.addEventListener('change', function () {
+    if (this.checked) {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
     }
-}
+});
 
-// Dropdown functionality
+// Dropdown functionality for exam list
 document.querySelectorAll('.dropdown-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        var dropdownContent = this.nextElementSibling;
-        dropdownContent.classList.toggle('active');
+    button.addEventListener('click', () => {
+        button.classList.toggle('active');
+        const dropdownContent = button.nextElementSibling;
+        dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
     });
 });
 
-// Load the weather, greeting, and checkbox state on page load
-window.onload = function() {
-    fetchWeather();
-    displayGreeting();
-    loadCheckboxState();
-    document.getElementById("theme-toggle").addEventListener("change", toggleTheme);
-    document.getElementById("add-todo").addEventListener("click", addTodoItem);
-};
+// TODO list logic
+document.addEventListener("DOMContentLoaded", () => {
+    const todoInput = document.getElementById("todo-input");
+    const addTodoBtn = document.getElementById("add-todo");
+    const todoList = document.getElementById("todo-list");
+
+    const savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
+    savedTodos.forEach(todo => {
+        addTodoItem(todo.text, todo.checked);
+    });
+
+    addTodoBtn.addEventListener("click", () => {
+        const todoText = todoInput.value.trim();
+        if (todoText && todoList.children.length < 6) {
+            addTodoItem(todoText, false);
+            saveTodos();
+            todoInput.value = "";
+        }
+    });
+
+    todoList.addEventListener("change", saveTodos);
+
+    function addTodoItem(text, checked) {
+        const li = document.createElement("li");
+        li.className = "todo-item";
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = checked;
+        li.appendChild(checkbox);
+        li.appendChild(document.createTextNode(" " + text));
+        todoList.appendChild(li);
+    }
+
+    function saveTodos() {
+        const todos = [];
+        todoList.querySelectorAll("li").forEach(li => {
+            todos.push({
+                text: li.textContent.trim(),
+                checked: li.querySelector("input").checked
+            });
+        });
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }
+});
+
+// Weather API integration (example placeholder)
+function updateWeather() {
+    document.getElementById("weather").innerText = "Sunny, 30°C"; // Example placeholder
+}
+
+updateWeather();
