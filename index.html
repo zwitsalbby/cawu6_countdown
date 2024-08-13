@@ -7,29 +7,38 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="theme-toggle-container">
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider round"></span>
+        </label>
+        <span id="mode-label">Light Mode</span>
+    </div>
+
     <div class="container">
-        <!-- Countdown Box -->
-        <div class="box" id="countdown-box">
-            <h1 id="title">CAWU 6</h1>
+        <div class="box" id="left-box">
+            <h1>CAWU 6</h1>
             <p id="countdown"></p>
-            <div id="greeting"></div>
-            <div id="weather"></div>
-            <!-- To-Do List Section -->
-            <div id="todo-section">
-                <h2>TO DO LIST:</h2>
+            <div id="todo-list-container">
+                <h3>TO DO LIST:</h3>
                 <ul id="todo-list">
-                    <li class="todo-item"><input type="checkbox"> <span>Gym</span></li>
-                    <li class="todo-item"><input type="checkbox"> <span>Pembukuan</span></li>
+                    <li class="todo-item"><input type="checkbox"> Gym</li>
+                    <li class="todo-item"><input type="checkbox"> Pembukuan</li>
                 </ul>
-                <input type="text" id="todo-input" placeholder="Tambahkan aktivitas...">
+                <input type="text" id="todo-input" placeholder="Add new task...">
                 <button id="add-todo">Add</button>
             </div>
         </div>
 
-        <!-- Schedule List Box -->
-        <div class="box" id="schedule-box">
-            <h2>List Ujian</h2>
-            <div class="month">
+        <div class="box" id="middle-box">
+            <p id="greeting"></p>
+            <p id="time"></p>
+            <p id="weather"></p>
+        </div>
+
+        <div class="box" id="right-box">
+            <h3>List Ujian</h3>
+            <div class="dropdown-container">
                 <button class="dropdown-btn">Agustus</button>
                 <div class="dropdown-content">
                     <ul>
@@ -38,8 +47,6 @@
                         <li>30 Agustus - Wealth Management - Quiz 1</li>
                     </ul>
                 </div>
-            </div>
-            <div class="month">
                 <button class="dropdown-btn">September</button>
                 <div class="dropdown-content">
                     <ul>
@@ -52,8 +59,6 @@
                         <li>26 September - Operasional Perbankan - Ujian 5</li>
                     </ul>
                 </div>
-            </div>
-            <div class="month">
                 <button class="dropdown-btn">Oktober</button>
                 <div class="dropdown-content">
                     <ul>
@@ -71,13 +76,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Dark/Light Mode Toggle -->
-    <label class="switch">
-        <input type="checkbox" id="theme-toggle">
-        <span class="slider round"></span>
-    </label>
-    <label id="mode-label">Light Mode</label>
 
     <script src="script.js"></script>
 </body>
