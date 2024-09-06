@@ -1,3 +1,4 @@
+/* General body styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -12,76 +13,62 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* Container to hold all boxes */
 .container {
     display: flex;
-    justify-content: space-around;
-    width: 90%;
-    max-width: 1200px;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 1000px;
     margin-top: 20px;
 }
 
-.box {
+/* Styling for the left, middle, and right boxes */
+.left-box, .middle-box, .right-box {
     background: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 30%;
-    position: relative;
     transition: background-color 0.3s, color 0.3s;
 }
 
-h1, h3 {
+h1, h2 {
     text-align: center;
 }
 
-#left-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
+/* Countdown styles */
 #countdown {
-    font-size: 1.5em;
+    font-size: 1.8em;
+    text-align: center;
     margin-bottom: 20px;
 }
 
-#todo-list-container {
-    width: 100%;
-}
-
-#todo-list {
-    list-style: none;
-    padding: 0;
-}
-
-#todo-list .todo-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-#todo-list input[type="text"] {
-    width: calc(100% - 20px);
-    padding: 5px;
-}
-
-#add-todo {
-    margin-top: 10px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-#middle-box {
+/* Middle box styles (greeting, time, and weather) */
+.middle-box {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-#right-box {
+#time {
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+#weather {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+/* Right box styles (exam schedule) */
+.right-box {
     max-height: 300px;
     overflow-y: auto;
 }
 
-.dropdown-container {
-    width: 100%;
+.month {
+    margin-bottom: 15px;
 }
 
 .dropdown-btn {
@@ -96,28 +83,24 @@ h1, h3 {
     transition: background-color 0.3s;
 }
 
-.dropdown-content {
-    display: none;
-    background-color: #f9f9f9;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
+.dropdown-btn:hover {
+    background-color: #555;
 }
 
-.dropdown-content ul {
+.month-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: none;
 }
 
-.dropdown-content ul li {
+.month-list li {
     padding: 10px;
+    background-color: #f9f9f9;
     border-bottom: 1px solid #ddd;
 }
 
-.dropdown-btn.active + .dropdown-content {
-    display: block;
-}
-
+/* Style for the theme toggle switch */
 #theme-toggle-container {
     position: fixed;
     bottom: 20px;
@@ -177,21 +160,35 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-/* Dark mode */
+/* Dark mode styles */
 body.dark-mode {
     background-color: #333;
     color: #f0f0f0;
 }
 
-body.dark-mode .box {
+body.dark-mode .left-box, 
+body.dark-mode .middle-box, 
+body.dark-mode .right-box {
     background-color: #444;
-    color: #f0f0f0;
 }
 
 body.dark-mode .dropdown-btn {
     background-color: #555;
 }
 
-body.dark-mode .dropdown-content ul li {
+body.dark-mode .month-list li {
     background-color: #555;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-box, .middle-box, .right-box {
+        width: 90%;
+        margin-bottom: 20px;
+    }
 }
