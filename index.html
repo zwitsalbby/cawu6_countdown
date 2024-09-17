@@ -3,55 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAWU 6 Countdown & To Do List</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="theme-toggle-container">
-        <label class="switch">
-            <input type="checkbox" id="theme-toggle">
-            <span class="slider round"></span>
-        </label>
+    <!-- Toggle Dark/Light Mode -->
+    <div class="toggle-container">
+        <input type="checkbox" id="dark-mode-toggle">
+        <label for="dark-mode-toggle" class="toggle-label"></label>
     </div>
-    
-<div class="container">
-    <!-- Left Box -->
-    <div class="left-box">
-        <h1>CAWU 6</h1>
-        <p id="countdown"></p>
-    </div>
-    
-    <!-- Middle Box -->
-    <div class="middle-box">
-        <p id="greeting"></p>
-        <p id="time"></p>
-        <div id="weather"></div>
-    </div>
-    
-    <!-- Right Box -->
-    <div class="right-box">
-        <h2>List Ujian</h2>
-            <div class="month">
-                <button class="dropdown-btn">September</button>
-                <ul class="month-list" style="display: none;">
-                    <li>20 September - Bahasa Inggris 2 - Post test TOEFL</li>
-                    <li>24 September - Accounting Theory - Ujian 2</li>
-                    <li>26 September - Operasional Perbankan - Ujian 5</li>
+
+    <!-- Box Container -->
+    <div class="container">
+        <div class="row">
+            <!-- Box kiri: Countdown dan To Do List -->
+            <div class="box" id="leftBox">
+                <h2>CAWU 6</h2>
+                <p id="countdown"></p>
+                <h3>TO DO LIST:</h3>
+                <ul id="toDoList">
+                    <li><input type="checkbox" id="gym"> Gym</li>
+                    <li><input type="checkbox" id="pembukuan"> Pembukuan</li>
                 </ul>
+                <input type="text" id="newTask" placeholder="Tambahkan tugas baru" maxlength="50">
+                <button id="addTaskBtn">Add</button>
             </div>
-            <div class="month">
-                <button class="dropdown-btn">Oktober</button>
-                <ul class="month-list" style="display: none;">
-                    <li>3 Oktober - Operasional Perbankan - Ujian 6</li>
-                    <li>11 Oktober - Bahasa Inggris 2 - Presentasi TED talk</li>
-                    <li>15 Oktober - Perilaku Keorganisasian - UAC</li>
-                    <li>16 Oktober - Wealth Management - Movie Criticize Assignment</li>
-                    <li>18 Oktober - Bahasa Inggris 2 - Presentasi TED talk</li>
-                    <li>18 Oktober - Wealth Management - UAC</li>
-                    <li>21 Oktober - Risk Management - Final Exams</li>
-                    <li>21 Oktober - Financial Modelling - Final Test</li>
-                    <li>22 Oktober - Accounting Theory - Ujian 3</li>
-                </ul>
+
+            <!-- Box tengah: Greetings, jam, dan cuaca -->
+            <div class="box" id="centerBox">
+                <h2 id="greeting"></h2>
+                <p id="time"></p>
+                <p id="weather"></p>
+            </div>
+
+            <!-- Box kanan: List Ujian -->
+            <div class="box" id="rightBox">
+                <h2>List Ujian</h2>
+                <div id="schedule">
+                    <div class="month" onclick="toggleSchedule('september')">September</div>
+                    <ul id="september" class="hidden">
+                        <li>20 September - Bahasa Inggris 2 - Post test TOEFL</li>
+                        <li>24 September - Accounting Theory - Ujian 2</li>
+                        <li>26 September - Operasional Perbankan - Ujian 5</li>
+                    </ul>
+                    <div class="month" onclick="toggleSchedule('october')">Oktober</div>
+                    <ul id="october" class="hidden">
+                        <li>10 Oktober - Ujian Matematika</li>
+                        <li>15 Oktober - Ujian Fisika</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Row for Quote and Weather Animation -->
+        <div class="row" id="additionalFeatures">
+            <div class="box" id="quoteBox">
+                <h2>Motivational Quote</h2>
+                <p id="motivationalQuote">"Keep pushing forward!"</p>
+            </div>
+            <div class="box" id="weatherAnimationBox">
+                <h2>Weather Animation</h2>
+                <div id="weatherAnimation"></div>
             </div>
         </div>
     </div>
