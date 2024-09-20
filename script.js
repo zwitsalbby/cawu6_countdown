@@ -1,82 +1,22 @@
-// Countdown Timer
-const countdownDate = new Date("Oct 22, 2024 00:00:00").getTime();
-
-const countdownFunction = setInterval(function() {
-    const now = new Date().getTime();
-    const distance = countdownDate - now;
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-    if (distance < 0) {
-        clearInterval(countdownFunction);
-        document.getElementById("countdown").innerHTML = "EXPIRED";
-    }
-}, 1000);
-
-// To Do List
-const tasks = ["Gym", "Pembukuan"];
-const toDoList = document.getElementById('toDoList');
-const newTaskInput = document.getElementById('newTask');
-const addTaskBtn = document.getElementById('addTaskBtn');
-
-function renderTasks() {
-    toDoList.innerHTML = tasks.map(task => `<li><input type="checkbox">${task}</li>`).join('');
-}
-
-addTaskBtn.addEventListener('click', () => {
-    const newTask = newTaskInput.value;
-    if (newTask && tasks.length < 3) {
-        tasks.push(newTask);
-        newTaskInput.value = '';
-        renderTasks();
-    }
-});
-
-renderTasks();
-
-// Greetings and Time
+// Display Time
 function updateTime() {
     const now = new Date();
     const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} WIB`;
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    document.getElementById('time').innerText = `${hours}:${minutes} WIB`;
 
-    document.getElementById('time').textContent = timeString;
-
-    let greeting;
+    let greeting = "Selamat Malam!";
     if (hours >= 5 && hours <= 10) greeting = "Selamat Pagi!";
     else if (hours >= 11 && hours <= 15) greeting = "Selamat Siang!";
     else if (hours >= 15 && hours <= 18) greeting = "Selamat Sore!";
-    else if (hours >= 19 && hours <= 21) greeting = "Selamat Malam!";
-    else greeting = "Eh tidur lah!!!!!!!";
+    else if (hours >= 21 && hours <= 23) greeting = "Eh tidur lah!!!!!!!";
 
-    document.getElementById('greeting').textContent = greeting;
+    document.getElementById('greeting').innerText = greeting;
 }
 
 setInterval(updateTime, 1000);
-updateTime();
 
-// Weather Simulation (you can enhance this by connecting to a real API)
-function displayWeather() {
-    const weather = "Sunny"; // Can be dynamic if API is used
-    document.getElementById('weather').textContent = `${weather}, 30°C`;
-    displayWeatherAnimation(weather);
-}
-
-displayWeather();
-
-// Schedule Dropdown
-function toggleSchedule(month) {
-    const element = document.getElementById(month);
-    element.classList.toggle('hidden');
-}
-
-// Motivational Quote Logic
+// Motivational Quote
 const quotes = [
     "Keep pushing forward!",
     "Believe you can and you're halfway there.",
