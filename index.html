@@ -1,66 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Toggle Dark/Light Mode -->
-    <div class="toggle-container">
-        <input type="checkbox" id="dark-mode-toggle">
-        <label for="dark-mode-toggle" class="toggle-label"></label>
+<div class="container">
+  <!-- Box Kiri: CAWU 6, Countdown, dan To-Do List -->
+  <div class="box">
+    <h2>CAWU 6</h2>
+    <div id="countdown">34d 14h 1m 36s</div>
+    <h3>TO DO LIST:</h3>
+    <ul id="toDoList">
+      <li><input type="checkbox"> Gym</li>
+      <li><input type="checkbox"> Pembukuan</li>
+    </ul>
+    <input type="text" id="newTask" placeholder="Tambahkan tugas baru">
+    <button id="addTaskBtn">Add</button>
+  </div>
+
+  <!-- Box Tengah: Greeting, Jam, dan Cuaca -->
+  <div class="box">
+    <h2 id="greeting">Selamat Pagi!</h2>
+    <div id="time">09:58 WIB</div>
+    <div id="weather">Sunny, 30°C</div>
+  </div>
+
+  <!-- Box Kanan: List Ujian -->
+  <div class="box">
+    <h2>List Ujian</h2>
+    <div id="examList">
+      <div class="month">September</div>
+      <ul>
+        <li>20 September - Bahasa Inggris 2 - Post test TOEFL</li>
+        <li>24 September - Accounting Theory - Ujian 2</li>
+        <li>26 September - Operasional Perbankan - Ujian 5</li>
+      </ul>
+      <div class="month">Oktober</div>
+      <ul>
+        <li>5 Oktober - Akuntansi Keuangan - Ujian 1</li>
+      </ul>
     </div>
+  </div>
+</div>
 
-    <!-- Box Container -->
-    <div class="container">
-        <div class="row">
-            <!-- Box kiri: Countdown dan To Do List -->
-            <div class="box" id="leftBox">
-                <h2>CAWU 6</h2>
-                <p id="countdown"></p>
-            </div>
+<!-- Box Motivational Quote -->
+<div id="motivationalQuoteBox" class="box">
+  <h2>Motivational Quote</h2>
+  <p id="motivationalQuote">Success is not final, failure is not fatal.</p>
+</div>
 
-            <!-- Box tengah: Greetings, jam, dan cuaca -->
-            <div class="box" id="centerBox">
-                <h2 id="greeting"></h2>
-                <p id="time"></p>
-                <p id="weather"></p>
-            </div>
+<!-- Box Weather Animation -->
+<div id="weatherAnimationBox" class="box">
+  <h2>Weather Animation</h2>
+  <div id="weatherAnimation">
+    <div class="sun"></div>
+  </div>
+</div>
 
-            <!-- Box kanan: List Ujian -->
-            <div class="box" id="rightBox">
-                <h2>List Ujian</h2>
-                <div id="schedule">
-                    <div class="month" onclick="toggleSchedule('september')">September</div>
-                    <ul id="september" class="hidden">
-                        <li>20 September - Bahasa Inggris 2 - Post test TOEFL</li>
-                        <li>24 September - Accounting Theory - Ujian 2</li>
-                        <li>26 September - Operasional Perbankan - Ujian 5</li>
-                    </ul>
-                    <div class="month" onclick="toggleSchedule('october')">Oktober</div>
-                    <ul id="october" class="hidden">
-                        <li>10 Oktober - Ujian Matematika</li>
-                        <li>15 Oktober - Ujian Fisika</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Additional Row for Quote and Weather Animation -->
-        <div class="row" id="additionalFeatures">
-            <div class="box" id="quoteBox">
-                <h2>Motivational Quote</h2>
-                <p id="motivationalQuote">"Keep pushing forward!"</p>
-            </div>
-            <div class="box" id="weatherAnimationBox">
-                <h2>Weather Animation</h2>
-                <div id="weatherAnimation"></div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+<!-- Dark Mode Toggle -->
+<input type="checkbox" id="dark-mode-toggle">
